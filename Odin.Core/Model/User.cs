@@ -13,5 +13,6 @@ namespace Odin.Core.Model
         public DateTime CreatedOn { get; set; }       
         public bool Deleted { get; set; }
         public bool Activated { get; set; }
+        public int Company { get; set; }
     }
 }

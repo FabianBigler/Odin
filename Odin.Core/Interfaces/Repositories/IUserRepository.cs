@@ -8,6 +8,6 @@ namespace Odin.Core.Interfaces.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<User> GetByName(string name);
+        Task<User> GetByNameOrEmail(string input);
     }
 }

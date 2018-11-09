@@ -10,7 +10,7 @@ namespace Odin.Core.Interfaces.Repositories
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetById(int id);
-        Task Create(T entity);
+        Task<int> Create(T entity);
         Task Delete(T entity);
         Task Update(T entity);
     }

@@ -8,6 +8,7 @@ namespace Odin.Core.Interfaces
 {
     public interface IUserSignUpService
     {
-        Task<UserSignUpResult> SignUp(string username, string email, string password);        
+        Task<UserSignUpResult> SignUp(string username, string email, string password);
+        Task<UserActivationResult> Activate(int userId, string token);
     }
 }

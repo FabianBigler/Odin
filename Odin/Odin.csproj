@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Odin.Core\Odin.Core.csproj" />
     <ProjectReference Include="..\Odin.Infrastructure\Odin.Infrastructure.csproj" />
+    <ProjectReference Include="..\Odin.Services\Odin.Services.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

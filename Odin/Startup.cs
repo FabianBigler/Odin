@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Odin.Core.Interfaces;
+using Odin.Core.Interfaces.Repositories;
 using Odin.Core.Model;
 using Odin.Infrastructure;
+using Odin.Infrastructure.Repositories;
+using Odin.Services;
 
 namespace Odin
 {
@@ -24,7 +27,10 @@ namespace Odin
         public void ConfigureServices(IServiceCollection services)
         {
             RegisterServices(services);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddOdinServices();
+            services.AddOdinRepositories();
+            services.Configure<SmtpConfig>(Configuration.GetSection("Smtp"));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

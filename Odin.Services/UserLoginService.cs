@@ -21,11 +21,11 @@ namespace Odin.Services
             this.secureHashProvider = secureHashProvider;
         }
 
-        public async Task<UserLoginResult> Login(string userName, string password)
+        public async Task<UserLoginResult> Login(string input, string password)
         {
             var result = new UserLoginResult();
 
-            var user = await userRepository.GetByName(userName);
+            var user = await userRepository.GetByNameOrEmail(input);
             if(user == null)
             {
                 result.State = UserLoginState.UserNotFound;
