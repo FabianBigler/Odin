@@ -86,7 +86,7 @@ namespace Odin.Services
         
         public async Task<UserActivationResult> Activate(int userId, string token)
         {
-            var userTokens = await userTokenRepository.GetAllByUserId(userId);
+            var userTokens = await userTokenRepository.GetValidTokensByUserId(userId);
             if(userTokens.Count() == 0)
             {
                 return new UserActivationResult() 

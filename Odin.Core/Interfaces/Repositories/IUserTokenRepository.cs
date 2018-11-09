@@ -8,6 +8,6 @@ namespace Odin.Core.Interfaces.Repositories
 {
     public interface IUserTokenRepository : IRepository<UserToken>
     {
-        Task<IEnumerable<UserToken>> GetAllByUserId(int userId);
+        Task<IEnumerable<UserToken>> GetValidTokensByUserId(int userId);
     }
 }

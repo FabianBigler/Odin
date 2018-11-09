@@ -16,7 +16,7 @@ namespace Odin.Test
         }
 
         [Fact]
-        public async Task OverallTest()
+        public async Task IntegrationTest()
         {
             try
             {

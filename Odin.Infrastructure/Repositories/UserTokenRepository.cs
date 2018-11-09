@@ -17,9 +17,26 @@ namespace Odin.Infrastructure.Repositories
         {
         }
 
-        public Task<int> Create(UserToken entity)
+        public async Task<int> Create(UserToken entity)
         {
-            throw new NotImplementedException();
+            string sql = @"INSERT INTO [dbo].[UserToken]
+                                   ([UserId]
+                                   ,[Type]
+                                   ,[Token]
+                                   ,[ExpirationDate]
+                                   ,[Used])
+                             VALUES
+                                   (@UserId
+                                   ,@Type
+                                   ,@Token
+                                   ,@ExpirationDate
+                                   ,@Used)
+                                   SELECT SCOPE_IDENTITY()";
+
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return await db.ExecuteScalarAsync<int>(sql, entity);                
+            }
         }
 
         public Task Delete(UserToken entity)
@@ -37,7 +54,7 @@ namespace Odin.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<UserToken>> GetAllByUserId(int userId)
+        public async Task<IEnumerable<UserToken>> GetValidTokensByUserId(int userId)
         {
             string sql = @"SELECT [Id]
                               ,[UserId]
