@@ -25,7 +25,7 @@ namespace Odin.Infrastructure.Test
         }
 
         [Fact]
-        public async Task IntegrationTest()
+        public async Task WalkThroughTest()
         {
             try
             {
@@ -54,19 +54,6 @@ namespace Odin.Infrastructure.Test
                 });
                 tokens = await userTokenRepository.GetValidTokensByUserId(2);
                 Assert.True(tokens.Count() == 0);
-
-
-                //int userId = await userRepository.Create(new User()
-                //{
-                //    Email = "fabian.bigler@gmail.com",
-                //    Name = "Fabian Bigler",
-                //    Password = string.Empty,
-                //    Deleted = false,
-                //    Activated = false,
-                //    Company = 0
-                //});
-
-
             }
             catch (Exception ex)
             {
