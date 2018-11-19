@@ -14,40 +14,11 @@ namespace Odin.Infrastructure.Repositories
 {
     public class UserRepository : BaseSqlRepository, IUserRepository
     {
-        private const string SqlSelect = @"SELECT [Id]
-                                              ,[Name]
-                                              ,[Email]
-                                              ,[Password] 
-                                              ,[Activated] 
-                                              ,[CreatedOn]
-                                              ,[Company]
-                                          FROM[dbo].[User]";
+        private const string SqlSelect = "SELECT [Id],[Name],[Email],[Password],[Activated],[CreatedOn],[Company] FROM [dbo].[User]";
 
-        private const string SqlUpdate = @"UPDATE [dbo].[User]
-                                           SET [Name] =  @Name,
-                                               [Email] = @Email,
-                                              [Password] = @Password,   
-                                              [Activated] = @Activated,                                              
-                                              [Deleted] = @Deleted,
-                                              [Company] = @Company";
+        private const string SqlUpdate = "UPDATE [dbo].[User] SET [Name] =  @Name,[Email] = @Email,[Password] = @Password,[Activated] = @Activated,[Deleted] = @Deleted,[Company] = @Company";
 
-        private const string SqlInsert = @"INSERT INTO[dbo].[User]
-                                            ([Name]
-                                              ,[Email]
-                                              ,[Password]                              
-                                              ,[CreatedOn]       
-                                              ,[Activated]       
-                                              ,[Deleted] 
-                                              ,[Company])
-                                           VALUES
-                                              (@Name
-                                               ,@Email
-                                               ,@Password                               
-                                               ,@CreatedOn                               
-                                               ,@Activated 
-                                               ,@Deleted
-                                               ,@Company)
-                                           SELECT SCOPE_IDENTITY()";
+        private const string SqlInsert = "INSERT INTO[dbo].[User]([Name],[Email],[Password],[CreatedOn],[Activated],[Deleted],[Company]) VALUES (@Name,@Email,@Password,@CreatedOn,@Activated,@Deleted,@Company) SELECT SCOPE_IDENTITY()";
 
         public UserRepository(string connectionString) : base(connectionString)
         {

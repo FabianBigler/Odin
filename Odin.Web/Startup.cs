@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Odin.Core.Model;
+using Odin.Infrastructure;
+using Odin.Services;
 
 namespace Odin.Web
 {
@@ -19,8 +22,24 @@ namespace Odin.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
+            var smtp = Configuration.GetSection("Smtp");
+            var smtpConfig = new SmtpConfig()
+            {
+                FromAddress = smtp["FromAddress"],
+                Host = smtp["Host"],
+                Password = smtp["Password"],
+                Port = int.Parse(smtp["Port"]),
+                User = smtp["User"]
+            };
+            
+            //IOptions<SmtpConfig>
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddOdinServices(smtpConfig, Configuration["BaseUrl"]);
+            string connectionstring = Configuration.GetSection("ConnectionStrings")["DefaultConnection"];
+            services.AddOdinRepositories(connectionstring);
+            
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

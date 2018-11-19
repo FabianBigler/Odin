@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Odin", "Odin\Odin.csproj", "{63AB6F14-9734-4067-A63F-19B49447EB4D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Odin.Infrastructure", "Odin.Infrastructure\Odin.Infrastructure.csproj", "{57D3CCF2-3657-49F8-A5F6-6A5CB7FFBAD5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Odin.Core", "Odin.Core\Odin.Core.csproj", "{817C0223-AD05-409A-A061-B5506277D966}"
@@ -15,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Odin.Services", "Odin.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Odin.Services.Test", "Odin.Services.Test\Odin.Services.Test.csproj", "{BE24DA8C-391A-4F7C-850C-BE3E704DC8B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odin.Web", "Odin.Web\Odin.Web.csproj", "{CFBC65E3-421B-405B-83FA-A1F4C650E109}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Odin.Web", "Odin.Web\Odin.Web.csproj", "{CFBC65E3-421B-405B-83FA-A1F4C650E109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{63AB6F14-9734-4067-A63F-19B49447EB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63AB6F14-9734-4067-A63F-19B49447EB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63AB6F14-9734-4067-A63F-19B49447EB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63AB6F14-9734-4067-A63F-19B49447EB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57D3CCF2-3657-49F8-A5F6-6A5CB7FFBAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57D3CCF2-3657-49F8-A5F6-6A5CB7FFBAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57D3CCF2-3657-49F8-A5F6-6A5CB7FFBAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU

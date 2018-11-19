@@ -9,10 +9,19 @@ namespace Odin.Infrastructure
 {
     public static class IServiceCollectionExtension
     {
-        public static IServiceCollection AddOdinRepositories(this IServiceCollection services)
-        {
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IUserTokenRepository, UserTokenRepository>();            
+        public static IServiceCollection AddOdinRepositories(this IServiceCollection services, string connectionString)
+        {            
+
+            services.AddTransient<IUserRepository, UserRepository>(_ =>
+            {                
+                return new UserRepository(connectionString);
+            });
+
+            services.AddTransient<IUserTokenRepository, UserTokenRepository>(_ =>
+            {
+                return new UserTokenRepository(connectionString);
+            });
+        
             return services;
         }
     }
