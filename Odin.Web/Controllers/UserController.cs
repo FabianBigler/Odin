@@ -96,8 +96,30 @@ namespace Odin.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp([FromBody] UserSignUpArgs userSignUpArgs)
         {
-            var result = await userSignUpService.SignUp(userSignUpArgs.UserName, userSignUpArgs.Email, userSignUpArgs.Password);
-            return Json(result);
+            try
+            {
+                var result = await userSignUpService.SignUp(userSignUpArgs.UserName, userSignUpArgs.Email, userSignUpArgs.Password);
+                string message = string.Empty;
+                switch(result.State)
+                {
+                    case SignUpState.EmailNotValid:
+                        message = "E-Mail ist nicht gültig.";
+                        break;
+                    case SignUpState.Success:
+                        message = "Registrierung erfolgreich.";
+                        break; 
+                    case SignUpState.UserAlreadyExists:
+                        message = "Benutzer existiert bereits.";
+                        break;
+                }
+
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, null);
+                return Json(new { success = false, message = ex.Message });
+            }        
         }
     }
 }

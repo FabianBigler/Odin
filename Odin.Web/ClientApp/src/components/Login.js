@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
+import { FormControl, FormGroup, ControlLabel, Button, Alert } from 'react-bootstrap';
 
 export class Login extends Component {
     constructor(props) {
@@ -7,8 +7,8 @@ export class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            message: ""            
-        };        
+            message: ""
+        };
     }
 
     validateForm() {
@@ -21,52 +21,40 @@ export class Login extends Component {
         });
     }
 
-    handleSubmit = event => {    
-        alert(this.state.email);
+    handleSubmit = event => {
+        
 
         fetch('api/User/Login',
             {
-                method: 'POST',        
+                method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                },            
+                },
                 body: JSON.stringify({
                     userName: this.state.email,
                     password: this.state.password
                 })
             })
             .then((response) => response.json())
-            .then(data => {                
-                if (data.success == true) {                    
+            .then(data => {
+                alert(JSON.stringify(data));
+                if (data.success == true) {
                     this.props.history.push("/");
-                } else {          
-                    
+                } else {
                     this.setState({
                         message: data.message
                     });
-                }                
+                }
             });
-        
-        //fetch('api/User/Login',
-        //    {
-        //        method: 'POST',
-        //        headers: {
-        //            'Accept': 'application/json',
-        //            'Content-Type': 'application/json',
-        //        },
-        //        body: JSON.stringify({
-        //            userName: this.state.email,
-        //            password: this.state.password
-        //        })
-        //    })
-        //    .then(data => {            
-        //        this.setState({
-        //            message: data.message
-        //        });                             
-        //    });
 
         event.preventDefault();
+    }
+
+    renderMessage() {
+        if (this.state.message) {
+            return <Alert bsStyle="danger"><strong>{this.state.message}</strong></Alert>
+        }        
     }
 
     render() {
@@ -74,7 +62,7 @@ export class Login extends Component {
             <div className="Login">
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup controlId="email" bsSize="large">
-                        <ControlLabel>Email</ControlLabel>
+                        <ControlLabel>E-Mail / Benutzername</ControlLabel>
                         <FormControl
                             autoFocus
                             type="email"
@@ -83,7 +71,7 @@ export class Login extends Component {
                         />
                     </FormGroup>
                     <FormGroup controlId="password" bsSize="large">
-                        <ControlLabel>Password</ControlLabel>
+                        <ControlLabel>Passwort</ControlLabel>
                         <FormControl
                             value={this.state.password}
                             onChange={this.handleChange}
@@ -97,7 +85,9 @@ export class Login extends Component {
                         type="submit"
                     >
                         Login
-          </Button>
+                    </Button>
+
+                    {this.renderMessage()}                    
                 </form>
             </div>
         );
